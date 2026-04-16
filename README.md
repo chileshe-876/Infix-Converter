@@ -8,6 +8,6 @@ This project is a Java program that converts an infix expression into postfix an
 
 ## Author
 
-Marvelous Bwalya
-202406501
+Marvelous Bwalya,
+202406501,
 Computer Science Student
