@@ -1,0 +1,23 @@
+Start
+Input the infix expression from the user.
+Initialize:
+    A stack to store operators.
+    A string to store the result.
+Scan the expression from left to right.
+If operand (letter or number):
+    Add it directly to the output.
+If ‘(’:
+Push it onto the stack.
+If ‘)’:
+    Pop from the stack and add to output until ‘(’ is found.
+    Remove ‘(’.
+If operator (+, −, *, /, ^):
+    While stack is not empty and precedence of operator on stack ≥ current operator:
+        Pop from stack to output.
+    Push current operator to stack.
+Repeat until expression ends.
+Pop remaining operators from stack to output.
+Display:
+Postfix expression
+Prefix expression
+End

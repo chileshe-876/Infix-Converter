@@ -1,0 +1,64 @@
+BEGIN
+
+FUNCTION precedence(op)
+    IF op is + or -
+        RETURN 1
+    ELSE IF op is * or /
+        RETURN 2
+    ELSE IF op is ^
+        RETURN 3
+    ELSE
+        RETURN 0
+END FUNCTION
+
+
+FUNCTION infixToPostfix(expression)
+
+    CREATE empty stack
+    CREATE empty string postfix
+
+    FOR each character ch in expression
+
+        IF ch is operand
+            postfix = postfix + ch
+
+        ELSE IF ch is '('
+            PUSH ch to stack
+
+        ELSE IF ch is ')'
+            WHILE top of stack is not '('
+                postfix = postfix + POP stack
+            POP '(' from stack
+
+        ELSE
+            WHILE stack not empty AND
+                  precedence(top of stack) >= precedence(ch)
+                postfix = postfix + POP stack
+            PUSH ch to stack
+
+    END FOR
+
+    WHILE stack not empty
+        postfix = postfix + POP stack
+
+    RETURN postfix
+
+END FUNCTION
+
+
+FUNCTION infixToPrefix(expression)
+
+    REVERSE expression
+
+    REPLACE '(' with ')'
+    REPLACE ')' with '('
+
+    postfix = infixToPostfix(reversed expression)
+
+    REVERSE postfix
+
+    RETURN prefix
+
+END FUNCTION
+
+END
